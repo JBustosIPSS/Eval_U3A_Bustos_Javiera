@@ -38,6 +38,7 @@ const AboutUs: React.FC = () => {
     };
 
     useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         getAboutUsData();
     }, []);
 

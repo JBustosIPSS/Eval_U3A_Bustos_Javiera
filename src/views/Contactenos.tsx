@@ -1,42 +1,48 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { useLocation } from 'react-router-dom';
 
 const Contactenos: React.FC = () => {
 
   const [error, setError] = useState<string>('');
   const [successMessage, setSuccessMessage] = useState<string>('');
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const producto = params.get('producto') || params.get('servicio') || '';
 
   const [nombre, setNombre] = useState('');
   const [correo, setCorreo] = useState('');
+  const [productoServicio, setProductoServicio] = useState(producto);
   const [mensaje, setMensaje] = useState('');
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
-    if (!nombre || !correo || !mensaje) {
+    if (!nombre || !correo || !productoServicio || !mensaje) {
       setError('Por favor, completa todos los campos del formulario.');
       setSuccessMessage('');
       return;
     }
-
     const correoRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
     if (!correoRegex.test(correo)) {
       setError('Por favor, ingresa un correo electrónico válido.');
       setSuccessMessage('');
       return;
     }
-
     setError('');
     setSuccessMessage('Mensaje enviado correctamente. Nos pondremos en contacto contigo pronto.');
-
     console.log("Formulario de contacto enviado:");
     console.log("Nombre:", nombre);
     console.log("Correo:", correo);
+    console.log("Producto o Servicio:", productoServicio);
     console.log("Mensaje:", mensaje);
-
     setNombre('');
     setCorreo('');
+    setProductoServicio('');
     setMensaje('');
   };
 
@@ -80,7 +86,16 @@ const Contactenos: React.FC = () => {
                         onChange={(e) => setCorreo(e.target.value)}
                       />
                     </div>
-
+                    <div className="form-group">
+                      <label htmlFor="productService"><strong>Producto o Servicio: </strong></label>
+                      <input
+                        type="text"
+                        id="productService"
+                        className="form-control"
+                        placeholder="Producto o servicio a consultar"
+                        value={productoServicio}
+                        onChange={e => setProductoServicio(e.target.value)} />
+                    </div>
                     <div className="form-group">
                       <label htmlFor="mensaje"><strong>Mensaje: </strong></label>
                       <textarea
@@ -116,7 +131,7 @@ const Contactenos: React.FC = () => {
             <div className="container text-center">
               <h4 className="mb-4">Información de contacto:</h4>
               <p className="mb-1"><strong>https://www.instagram.com/teje_lanas.vivi</strong></p>
-              <p>TEJElANAS, ubicado en Laguna de Zapallar<br/>Chile</p>
+              <p>TEJElANAS, ubicado en Laguna de Zapallar<br />Chile</p>
               <p><strong>@teje_lanas.vivi</strong>
               </p>
             </div>

@@ -8,7 +8,7 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ seccionActual }) => {
   return (
     <header>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <nav className="navbar navbar-expand-lg navbar-dark">
         <a className="navbar-brand nav-title" href="/">
           <img src={logo} alt="Logo Tejelanas Vivi" height="40" />
         </a>

@@ -4,6 +4,8 @@ import { ProductsServicesServiceResponse } from '../assets/data_mock/products-se
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Spinner from '../components/Spinner';
+import ProductCard from '../components/ProductCard';
+import ServiceCard from '../components/ServiceCard';
 
 interface Servicios {
     id: number;
@@ -61,11 +63,18 @@ const ProductsServices: React.FC = () => {
     };
 
     useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         getProductsServices();
     }, []);
 
+
     const showInfoProductos = () => {
-        return productsServices.data.productos.map((producto) => (
+        return productsServices.data.productos.map(producto => (
+            <div key={producto.id} className="col-md-6 col-lg-4 mb-4">
+                <ProductCard producto={producto} />
+            </div>
+        ))
+        /*return productsServices.data.productos.map((producto) => (
             <div key={producto.id} className="col-md-6 col-lg-4 mb-4">
                 <div className="card-servicio h-100">
                     <img
@@ -97,11 +106,16 @@ const ProductsServices: React.FC = () => {
                     </p>
                 </div>
             </div>
-        ));
+        ));*/
     };
 
     const showInfoServicios = () => {
-        return productsServices.data.servicios.map((servicio) => (
+        return productsServices.data.servicios.map(servicio => (
+            <div key={servicio.id} className="col-md-6 col-lg-4 mb-4">
+                <ServiceCard servicio={servicio} />
+            </div>
+        ))
+        /*productsServices.data.servicios.map((servicio) => (
             <div key={servicio.id} className="col-md-6 col-lg-4 mb-4">
                 <div className="card-servicio h-100">
                     <img
@@ -116,7 +130,7 @@ const ProductsServices: React.FC = () => {
                     <p>Fecha: {servicio.fecha}</p>
                 </div>
             </div>
-        ));
+        ));*/
     };
 
     return (

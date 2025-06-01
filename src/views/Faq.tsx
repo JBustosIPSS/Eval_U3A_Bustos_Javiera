@@ -42,6 +42,7 @@ const FaqPage: React.FC = () => {
     };
 
     useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
         getFaqData();
     }, []);
 
@@ -82,6 +83,7 @@ const FaqPage: React.FC = () => {
                     <div id="faq-container" style={{ display: loading ? 'none' : 'block' }}>
                         {showFaqs()}
                     </div>
+                    <br></br>
                     {error && (
                         <div className="alert alert-danger text-center">
                             <strong>Error:</strong> {error}
