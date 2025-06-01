@@ -1,0 +1,761 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Tu API RESTful (Solo GET)",
+        "version": "1.0.0",
+        "description": "Documentación del método GET para el recurso de servicios."
+    },
+    "servers": [
+        {
+            "url": "http://localhost/consultoria-api",
+            "description": "Servidor de desarrollo"
+        }
+    ],
+    "paths": {
+        "/servicios": {
+            "get": {
+                "summary": "Obtiene la lista de todos los servicios.",
+                "description": "Retorna un array de objetos de servicio. Esta operación está sujeta a limitaciones de tasa.",
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa.",
+                        "headers": {
+                            "X-RateLimit-Limit": {
+                                "schema": {
+                                    "type": "integer",
+                                    "description": "El límite de peticiones por hora."
+                                },
+                                "example": 100
+                            },
+                            "X-RateLimit-Remaining": {
+                                "schema": {
+                                    "type": "integer",
+                                    "description": "El número de peticiones restantes en la hora actual."
+                                },
+                                "example": 95
+                            },
+                            "X-RateLimit-Reset": {
+                                "schema": {
+                                    "type": "integer",
+                                    "description": "El timestamp Unix en el que el límite de peticiones se reiniciará."
+                                },
+                                "example": 1653571200
+                            },
+                            "Cache-Control": {
+                                "schema": {
+                                    "type": "string",
+                                    "description": "Directivas de control de caché."
+                                },
+                                "example": "public, max-age=3600"
+                            },
+                            "ETag": {
+                                "schema": {
+                                    "type": "string",
+                                    "description": "Etiqueta de entidad para la validación de caché."
+                                },
+                                "example": "W/\"abcdef12345\""
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Servicio"
+                                    }
+                                },
+                                "example": [
+                                    {
+                                        "id": 1,
+                                        "nombre": "Consultoría Inicial",
+                                        "descripcion": "Evaluación inicial de las necesidades del cliente."
+                                    },
+                                    {
+                                        "id": 2,
+                                        "nombre": "Desarrollo de Estrategia",
+                                        "descripcion": "Creación de un plan estratégico personalizado."
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error interno del servidor.",
+                        "content": {
+                            "application/json": {
+                                "$ref": "#/components/schemas/Error"
+                            },
+                            "example": {
+                                "mensaje": "Error al conectar con la base de datos."
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{id}": {
+            "get": {
+                "summary": "Obtiene un servicio por su ID.",
+                "description": "Retorna los detalles de un servicio específico. Esta operación puede utilizar caché.",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "ID del servicio a obtener.",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Servicio encontrado.",
+                        "headers": {
+                            "X-RateLimit-Limit": {
+                                "schema": {
+                                    "type": "integer",
+                                    "description": "El límite de peticiones por hora."
+                                },
+                                "example": 100
+                            },
+                            "X-RateLimit-Remaining": {
+                                "schema": {
+                                    "type": "integer",
+                                    "description": "El número de peticiones restantes en la hora actual."
+                                },
+                                "example": 95
+                            },
+                            "X-RateLimit-Reset": {
+                                "schema": {
+                                    "type": "integer",
+                                    "description": "El timestamp Unix en el que el límite de peticiones se reiniciará."
+                                },
+                                "example": 1653571200
+                            },
+                            "Cache-Control": {
+                                "schema": {
+                                    "type": "string",
+                                    "description": "Directivas de control de caché."
+                                },
+                                "example": "public, max-age=3600"
+                            },
+                            "ETag": {
+                                "schema": {
+                                    "type": "string",
+                                    "description": "Etiqueta de entidad para la validación de caché."
+                                },
+                                "example": "W/\"zyxw98765\""
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Servicio"
+                                },
+                                "example": {
+                                    "id": 1,
+                                    "nombre": "Consultoría Inicial",
+                                    "descripcion": "Evaluación inicial de las necesidades del cliente."
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Servicio no encontrado.",
+                        "content": {
+                            "application/json": {
+                                "$ref": "#/components/schemas/Error"
+                            },
+                            "example": {
+                                "mensaje": "Servicio no encontrado."
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error interno del servidor.",
+                        "content": {
+                            "application/json": {
+                                "$ref": "#/components/schemas/Error"
+                            },
+                            "example": {
+                                "mensaje": "Error al obtener el servicio."
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/about-us": {
+            "get": {
+                "summary": "Obtiene información sobre el proyecto 'Tejelanas Vivi'.",
+                "description": "Retorna una descripción detallada del proyecto 'Tejelanas Vivi', que celebra la belleza y versatilidad de las fibras naturales.",
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa.",
+                        "headers": {
+                            "X-RateLimit-Limit": {
+                                "schema": {
+                                    "type": "integer",
+                                    "description": "El límite de peticiones por hora."
+                                },
+                                "example": 100
+                            },
+                            "X-RateLimit-Remaining": {
+                                "schema": {
+                                    "type": "integer",
+                                    "description": "El número de peticiones restantes en la hora actual."
+                                },
+                                "example": 95
+                            },
+                            "X-RateLimit-Reset": {
+                                "schema": {
+                                    "type": "integer",
+                                    "description": "El timestamp Unix en el que el límite de peticiones se reiniciará."
+                                },
+                                "example": 1653571200
+                            },
+                            "Cache-Control": {
+                                "schema": {
+                                    "type": "string",
+                                    "description": "Directivas de control de caché."
+                                },
+                                "example": "public, max-age=3600"
+                            },
+                            "ETag": {
+                                "schema": {
+                                    "type": "string",
+                                    "description": "Etiqueta de entidad para la validación de caché."
+                                },
+                                "example": "W/\"abcdef12345\""
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "string",
+                                            "description": "Descripción del proyecto 'Tejelanas Vivi'."
+                                        }
+                                    },
+                                    "example": {
+                                        "data": "\"Tejelanas Vivi\" es un proyecto que celebra la belleza y la versatilidad de las fibras naturales. Inspirados en la naturaleza, creamos piezas tejidas a mano que conectan con la tierra y con quienes las usan. A través de técnicas ancestrales como el telar y el crochet, transformamos fibras naturales en productos textiles únicos y sostenibles, promoviendo un consumo consciente y respetuoso con el medio ambiente."
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Información no encontrada.",
+                        "content": {
+                            "application/json": {
+                                "$ref": "#/components/schemas/Error"
+                            },
+                            "example": {
+                                "mensaje": "No se encontró información sobre el proyecto."
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error interno del servidor.",
+                        "content": {
+                            "application/json": {
+                                "$ref": "#/components/schemas/Error"
+                            },
+                            "example": {
+                                "mensaje": "Error al obtener la información sobre el proyecto."
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/productos-servicios": {
+            "get": {
+                "summary": "Obtiene la lista de productos y servicios.",
+                "description": "Retorna los productos y servicios disponibles en Tejelanas Vivi.",
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa.",
+                        "headers": {
+                            "X-RateLimit-Limit": {
+                                "schema": {
+                                    "type": "integer",
+                                    "description": "El límite de peticiones por hora."
+                                },
+                                "example": 100
+                            },
+                            "X-RateLimit-Remaining": {
+                                "schema": {
+                                    "type": "integer",
+                                    "description": "El número de peticiones restantes en la hora actual."
+                                },
+                                "example": 95
+                            },
+                            "X-RateLimit-Reset": {
+                                "schema": {
+                                    "type": "integer",
+                                    "description": "El timestamp Unix en el que el límite de peticiones se reiniciará."
+                                },
+                                "example": 1653571200
+                            },
+                            "Cache-Control": {
+                                "schema": {
+                                    "type": "string",
+                                    "description": "Directivas de control de caché."
+                                },
+                                "example": "public, max-age=3600"
+                            },
+                            "ETag": {
+                                "schema": {
+                                    "type": "string",
+                                    "description": "Etiqueta de entidad para la validación de caché."
+                                },
+                                "example": "W/\"abcdef12345\""
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "productos": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "$ref": "#/components/schemas/ProductosServicios"
+                                                    }
+                                                },
+                                                "servicios": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "$ref": "#/components/schemas/ProductosServicios"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "data": {
+                                            "productos": [
+                                                {
+                                                    "id": 1,
+                                                    "nombre": "Falda a Crochet",
+                                                    "descripcion": "Transforma tu estilo con esta hermosa falda tejida a crochet, una pieza artesanal que irradia encanto y delicadeza.",
+                                                    "tallas": [
+                                                        "S",
+                                                        "M",
+                                                        "L",
+                                                        "XL"
+                                                    ],
+                                                    "colores": [
+                                                        "crema",
+                                                        "verde esmeralda"
+                                                    ],
+                                                    "precio": 9990,
+                                                    "imgs": [
+                                                        "https://www.clinicatecnologica.cl/ipss/tejelanasVivi/imgs/productos/faldaCrochet1.png"
+                                                    ]
+                                                },
+                                                {
+                                                    "id": 2,
+                                                    "nombre": "Ovillo de Lana Merino Gigante",
+                                                    "descripcion": "Este tipo de lana es conocida por su suavidad y por ser muy gruesa.",
+                                                    "tallas": [],
+                                                    "colores": [
+                                                        "azul",
+                                                        "fucsia",
+                                                        "beige",
+                                                        "magenta"
+                                                    ],
+                                                    "precio": 4990,
+                                                    "imgs": [
+                                                        "https://www.clinicatecnologica.cl/ipss/tejelanasVivi/imgs/productos/ovillolanaColor.png"
+                                                    ]
+                                                }
+                                            ],
+                                            "servicios": [
+                                                {
+                                                    "id": 1,
+                                                    "nombre": "Taller Telar Decorativo Junio 2025",
+                                                    "ubicacion": "Mall Vivo, Avda La florida Rojas Magallanes",
+                                                    "cupos": 50,
+                                                    "fecha": "08/06/2025",
+                                                    "imgs": [
+                                                        "https://www.clinicatecnologica.cl/ipss/tejelanasVivi/imgs/servicios/taller1.png"
+                                                    ]
+                                                },
+                                                {
+                                                    "id": 2,
+                                                    "nombre": "Taller Telar Decorativo Julio 2025",
+                                                    "ubicacion": "Laguna de Zapallar",
+                                                    "cupos": 100,
+                                                    "fecha": "20/07/2025",
+                                                    "imgs": [
+                                                        "https://www.clinicatecnologica.cl/ipss/tejelanasVivi/imgs/servicios/taller2.png"
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Información no encontrada.",
+                        "content": {
+                            "application/json": {
+                                "$ref": "#/components/schemas/Error"
+                            },
+                            "example": {
+                                "mensaje": "No se encontró información sobre productos y servicios."
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error interno del servidor.",
+                        "content": {
+                            "application/json": {
+                                "$ref": "#/components/schemas/Error"
+                            },
+                            "example": {
+                                "mensaje": "Error al obtener los productos y servicios."
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/faq": {
+            "get": {
+                "summary": "Obtiene la lista de preguntas frecuentes (FAQ).",
+                "description": "Retorna las preguntas y respuestas más comunes sobre Tejelanas Vivi.",
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa.",
+                        "headers": {
+                            "X-RateLimit-Limit": {
+                                "schema": {
+                                    "type": "integer",
+                                    "description": "El límite de peticiones por hora."
+                                },
+                                "example": 100
+                            },
+                            "X-RateLimit-Remaining": {
+                                "schema": {
+                                    "type": "integer",
+                                    "description": "El número de peticiones restantes en la hora actual."
+                                },
+                                "example": 95
+                            },
+                            "X-RateLimit-Reset": {
+                                "schema": {
+                                    "type": "integer",
+                                    "description": "El timestamp Unix en el que el límite de peticiones se reiniciará."
+                                },
+                                "example": 1653571200
+                            },
+                            "Cache-Control": {
+                                "schema": {
+                                    "type": "string",
+                                    "description": "Directivas de control de caché."
+                                },
+                                "example": "public, max-age=3600"
+                            },
+                            "ETag": {
+                                "schema": {
+                                    "type": "string",
+                                    "description": "Etiqueta de entidad para la validación de caché."
+                                },
+                                "example": "W/\"abcdef12345\""
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/FAQ"
+                                            }
+                                        }
+                                    },
+                                    "example": {
+                                        "data": [
+                                            {
+                                                "id": 1,
+                                                "titulo": "¿Quién está detrás de Tejelanas Vivi?",
+                                                "respuesta": "Viviana Méndez Orrego, dueña de Tejelanas Vivi desde el año 2011.",
+                                                "activo": true
+                                            },
+                                            {
+                                                "id": 2,
+                                                "titulo": "¿Con qué empresas realiza los envíos a todo Chile (regiones fuera)?",
+                                                "respuesta": "Trabajamos con Starken y Chile Express en todo Chile.",
+                                                "activo": true
+                                            },
+                                            {
+                                                "id": 3,
+                                                "titulo": "¿Dónde están ubicados?",
+                                                "respuesta": "En Carlos Leon Briceño #1002 local 4, Laguna.",
+                                                "activo": true
+                                            },
+                                            {
+                                                "id": 4,
+                                                "titulo": "¿Tienen presencia en redes sociales?",
+                                                "respuesta": "Si, estamos en Facebook: https://es-la.facebook.com/MezcliMam/ Instagram: https://www.instagram.com/teje_lanas.vivi/ .",
+                                                "activo": true
+                                            },
+                                            {
+                                                "id": 5,
+                                                "titulo": "¿Tiene donde recibir un mensaje por whatsapp?",
+                                                "respuesta": "Si, me puede escribir al número: +56 9 7632 2314.",
+                                                "activo": true
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Información no encontrada.",
+                        "content": {
+                            "application/json": {
+                                "$ref": "#/components/schemas/Error"
+                            },
+                            "example": {
+                                "mensaje": "No se encontró información sobre las preguntas frecuentes."
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error interno del servidor.",
+                        "content": {
+                            "application/json": {
+                                "$ref": "#/components/schemas/Error"
+                            },
+                            "example": {
+                                "mensaje": "Error al obtener las preguntas frecuentes."
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Servicio": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "description": "ID único del servicio.",
+                        "readOnly": true
+                    },
+                    "nombre": {
+                        "type": "string",
+                        "description": "Nombre del servicio."
+                    },
+                    "descripcion": {
+                        "type": "string",
+                        "description": "Descripción del servicio."
+                    }
+                },
+                "required": [
+                    "id",
+                    "nombre",
+                    "descripcion"
+                ]
+            },
+            "AboutUs": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "string",
+                        "description": "Descripción del proyecto 'Tejelanas Vivi'."
+                    }
+                },
+                "required": [
+                    "data"
+                ]
+            },
+            "ProductosServicios": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "productos": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "description": "ID único del producto."
+                                        },
+                                        "nombre": {
+                                            "type": "string",
+                                            "description": "Nombre del producto."
+                                        },
+                                        "descripcion": {
+                                            "type": "string",
+                                            "description": "Descripción del producto."
+                                        },
+                                        "tallas": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            },
+                                            "description": "Tallas disponibles del producto."
+                                        },
+                                        "colores": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string"
+                                            },
+                                            "description": "Colores disponibles del producto."
+                                        },
+                                        "precio": {
+                                            "type": "integer",
+                                            "description": "Precio del producto en la moneda local."
+                                        },
+                                        "imgs": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string",
+                                                "format": "uri"
+                                            },
+                                            "description": "URLs de las imágenes del producto."
+                                        }
+                                    },
+                                    "required": [
+                                        "id",
+                                        "nombre",
+                                        "precio",
+                                        "descripcion",
+                                        "imgs"
+                                    ]
+                                },
+                                "description": "Array de productos de 'Tejelanas Vivi'."
+                            },
+                            "servicios": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "description": "ID único del servicio."
+                                        },
+                                        "nombre": {
+                                            "type": "string",
+                                            "description": "Nombre del servicio o taller."
+                                        },
+                                        "ubicacion": {
+                                            "type": "string",
+                                            "description": "Ubicación del servicio o taller."
+                                        },
+                                        "cupos": {
+                                            "type": "integer",
+                                            "description": "Cantidad de cupos disponibles para el servicio."
+                                        },
+                                        "fecha": {
+                                            "type": "string",
+                                            "format": "date",
+                                            "description": "Fecha en que se realiza el servicio o taller."
+                                        },
+                                        "imgs": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string",
+                                                "format": "uri"
+                                            },
+                                            "description": "URLs de las imágenes del servicio o taller."
+                                        }
+                                    },
+                                    "required": [
+                                        "id",
+                                        "nombre",
+                                        "ubicacion",
+                                        "cupos",
+                                        "fecha",
+                                        "imgs"
+                                    ]
+                                },
+                                "description": "Array de servicios de 'Tejelanas Vivi'."
+                            }
+                        },
+                        "required": [
+                            "productos",
+                            "servicios"
+                        ]
+                    }
+                },
+                "required": [
+                    "data"
+                ]
+            },
+            "FAQ": {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "integer",
+                                    "description": "ID único de la pregunta frecuente."
+                                },
+                                "titulo": {
+                                    "type": "string",
+                                    "description": "Título de la pregunta frecuente."
+                                },
+                                "respuesta": {
+                                    "type": "string",
+                                    "description": "Respuesta a la pregunta frecuente."
+                                },
+                                "activo": {
+                                    "type": "boolean",
+                                    "description": "Indica si la pregunta frecuente está activa."
+                                }
+                            },
+                            "required": [
+                                "id",
+                                "titulo",
+                                "respuesta",
+                                "activo"
+                            ]
+                        },
+                        "description": "Array de preguntas frecuentes de 'Tejelanas Vivi'."
+                    }
+                },
+                "required": [
+                    "data"
+                ]
+            },
+            "Error": {
+                "type": "object",
+                "properties": {
+                    "mensaje": {
+                        "type": "string",
+                        "description": "Mensaje de error."
+                    }
+                },
+                "required": [
+                    "mensaje"
+                ]
+            }
+        }
+    }
+}
