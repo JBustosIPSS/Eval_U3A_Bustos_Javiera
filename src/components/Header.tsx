@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../../public/logo_municipalidad.png';
+import logo from '../assets/logo_municipalidad.png';
 
 interface HeaderProps {
   seccionActual: string;
@@ -27,32 +27,32 @@ const Header: React.FC<HeaderProps> = ({ seccionActual }) => {
             </li>
             <li className="nav-item">
               <a
-                className={`nav-link ${seccionActual === 'quienesSomos' ? 'active' : ''}`}
-                href="quienesSomos"
+                className={`nav-link ${seccionActual === 'about-us' ? 'active' : ''}`}
+                href="about-us"
               >
                 Quienes Somos
               </a>
             </li>
             <li className="nav-item">
               <a
-                className={`nav-link ${seccionActual === 'productos' ? 'active' : ''}`}
-                href="productos"
+                className={`nav-link ${seccionActual === 'products-services' ? 'active' : ''}`}
+                href="products-services"
               >
-                Productos
+                Productos y Servicios
               </a>
             </li>
             <li className="nav-item">
               <a
-                className={`nav-link ${seccionActual === 'preguntasFrecuentes' ? 'active' : ''}`}
-                href="preguntasFrecuentes"
+                className={`nav-link ${seccionActual === 'faq' ? 'active' : ''}`}
+                href="faq"
               >
                 Preguntas Frecuentes
               </a>
             </li>
             <li className="nav-item">
               <a
-                className={`nav-link ${seccionActual === 'contactenos' ? 'active' : ''}`}
-                href="contactenos"
+                className={`nav-link ${seccionActual === 'contact-us' ? 'active' : ''}`}
+                href="contact-us"
               >
                 Contáctenos
               </a>

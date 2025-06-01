@@ -1,23 +1,21 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-/*import Municipio from './views/Municipio';
 import Contactenos from './views/Contactenos';
-import UnidadesMunicipales from './views/UnidadesMunicipales';
-import Home from './views/Home';*/
+import AboutUs from './views/AboutUs';
+import ProductsServices from './views/ProductsServices';
 
 const App: React.FC = () => {
   return (
     <div>
-      hola
-    <Router>
-      <Routes>
-        <Route path="/" element={null} />
-        <Route path="/municipio" element={null} />
-        <Route path="/contactenos" element={null} />
-        <Route path="/unidadesMunicipales" element={null} />
-      </Routes>
-    </Router >
+      <Router>
+        <Routes>
+          <Route path="/" element={null} />
+          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/products-services" element={<ProductsServices />} />
+          <Route path="/contact-us" element={<Contactenos />} />
+        </Routes>
+      </Router >
     </div>
   );
 };
