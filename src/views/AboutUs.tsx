@@ -18,8 +18,7 @@ const AboutUs: React.FC = () => {
 
     const getAboutUsData = async () => {
         let result: AboutUsApi = { data: loadingMessage };
-        const BASE_PATH_API_URL = process.env.REACT_APP_BASE_PATH_API_URL ? process.env.REACT_APP_BASE_PATH_API_URL : "not working";
-        console.log(BASE_PATH_API_URL)
+        const BASE_PATH_API_URL = process.env.REACT_APP_BASE_PATH_API_URL ? process.env.REACT_APP_BASE_PATH_API_URL : "";
         try {
             const response = await axios.get(`${BASE_PATH_API_URL}/backend-aboutUs.php`);
             result = response.data;

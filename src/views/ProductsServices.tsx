@@ -40,12 +40,10 @@ const ProductsServices: React.FC = () => {
 
     const getProductsServices = async () => {
         let result: ProductsServicesApi = { data: { productos: [], servicios: [] } };
-        const BASE_PATH_API_URL = process.env.REACT_APP_BASE_PATH_API_URL ? process.env.REACT_APP_BASE_PATH_API_URL : "not working";
-        console.log(BASE_PATH_API_URL)
+        const BASE_PATH_API_URL = process.env.REACT_APP_BASE_PATH_API_URL ? process.env.REACT_APP_BASE_PATH_API_URL : "";
         try {
             const response = await axios.get(`${BASE_PATH_API_URL}/backend-productsServices.php`);
             result = response.data;
-            console.log(result);
 
             if (!result.data) {
                 result.data = ProductsServicesServiceResponse.data;
