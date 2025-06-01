@@ -3,6 +3,7 @@ import axios from 'axios';
 import { ProductsServicesServiceResponse } from '../assets/data_mock/products-services';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import Spinner from '../components/Spinner';
 
 interface Servicios {
     id: number;
@@ -37,13 +38,15 @@ const ProductsServices: React.FC = () => {
 
     const getProductsServices = async () => {
         let result: ProductsServicesApi = { data: { productos: [], servicios: [] } };
+        const BASE_PATH_API_URL = process.env.REACT_APP_BASE_PATH_API_URL ? process.env.REACT_APP_BASE_PATH_API_URL : "not working";
+        console.log(BASE_PATH_API_URL)
         try {
-            const response = await axios.get('backend-productsServices.php');
+            const response = await axios.get(`${BASE_PATH_API_URL}/backend-productsServices.php`);
             result = response.data;
             console.log(result);
 
             if (!result.data) {
-                response.data = ProductsServicesServiceResponse;
+                result.data = ProductsServicesServiceResponse.data;
                 console.log("Servicio no disponible temporalmente o no entrega el formato esperado.")
             }
 
@@ -63,7 +66,7 @@ const ProductsServices: React.FC = () => {
 
     const showInfoProductos = () => {
         return productsServices.data.productos.map((producto) => (
-            <div key={producto.id} className="col-md-6 col-lg-3 mb-4">
+            <div key={producto.id} className="col-md-6 col-lg-4 mb-4">
                 <div className="card-servicio h-100">
                     <img
                         src={producto.imgs[0]}
@@ -99,7 +102,7 @@ const ProductsServices: React.FC = () => {
 
     const showInfoServicios = () => {
         return productsServices.data.servicios.map((servicio) => (
-            <div key={servicio.id} className="col-md-6 col-lg-3 mb-4">
+            <div key={servicio.id} className="col-md-6 col-lg-4 mb-4">
                 <div className="card-servicio h-100">
                     <img
                         src={servicio.imgs[0]}
@@ -118,23 +121,27 @@ const ProductsServices: React.FC = () => {
 
     return (
         <div>
-            <Header seccionActual={'productsServices'} />
-            <section className="py-5" style={{ background: '#012d3e', color: 'white' }}>
+            <Header seccionActual={'products-services'} />
+            <section className="py-5" style={{ background: 'rgb(144 77 143 / 31%)' }}>
                 <div className="container">
                     <div className="text-center mb-5">
                         <h1><strong>Nuestros productos y servicios</strong></h1>
-                        <p className="text-subtitle" style={{ color: '#ccc' }}>
+                        <p className="text-subtitle">
                             Conoce nuestra amplia gama de productos y servicios
                         </p>
                     </div>
-                    <div>
-                        <div id="loading" style={{ display: loading ? 'block' : 'none' }}>
-                            Cargando...
+                    <Spinner loading={loading} />
+                    <div id="contenido-productsServices" style={{ display: loading ? 'none' : 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+                        <div className="w-100 text-center">
+                            <h2 className="mb-4">Nuestros Productos</h2>
                         </div>
-                    </div>
-
-                    <div id="contenido-productsServices" style={{ display: loading ? 'none' : 'flex', flexWrap: 'wrap' }}>
                         {productsServices.data.productos.length > 0 ? showInfoProductos() : null}
+                    </div>
+                    <hr className="my-5" />
+                    <div id="contenido-servicios" style={{ display: loading ? 'none' : 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+                        <div className="w-100 text-center">
+                            <h2 className="mb-4">Nuestros Servicios</h2>
+                        </div>
                         {productsServices.data.servicios.length > 0 ? showInfoServicios() : null}
                     </div>
                     {error && (

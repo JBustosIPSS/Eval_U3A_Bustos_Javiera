@@ -42,12 +42,12 @@ const Contactenos: React.FC = () => {
 
   return (
     <div>
-      <Header seccionActual={'contactUs'} />
-      <section className="py-5" style={{ background: '#012d3e', color: 'white' }}>
+      <Header seccionActual={'contact-us'} />
+      <section className="py-5" style={{ background: 'rgb(144 77 143 / 31%)' }}>
         <div className="container">
           <div className="text-center mb-5">
             <h1><strong>Contáctenos</strong></h1>
-            <p className="text-subtitle" style={{ color: '#ccc' }}>
+            <p className="text-subtitle">
               ¿Tienes consultas o quieres inscribirte en nuestros talleres de crochet? ¡Envíanos un mensaje!
             </p>
           </div>

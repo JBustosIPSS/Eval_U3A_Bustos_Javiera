@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../assets/logo_municipalidad.png';
+import logo from '../assets/logo_tejelanas.png';
 
 interface HeaderProps {
   seccionActual: string;

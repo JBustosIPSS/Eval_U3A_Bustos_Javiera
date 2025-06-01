@@ -1,3 +1,12 @@
+## Datos
+
+Javiera Bustos Villarroel
+Eva3 Backend y Frontend
+
+## Nota archivo .env
+
+Se sube archivo .env con el fin de agilizar el proceso de instalación. Se debe reemplazar el valor de la variable por la ruta de la carpeta a la cual se alojará el backend (archivos php). Cabe destacar que, si bien se entiende que el archivo .env no se debe subir por temas de seguridad al exponer información sensible, se realiza en este caso sólo con fines de prueba académicos y agilizar el proceso de instalación.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
