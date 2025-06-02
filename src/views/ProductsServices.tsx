@@ -71,40 +71,7 @@ const ProductsServices: React.FC = () => {
             <div key={producto.id} className="col-md-6 col-lg-4 mb-4">
                 <ProductCard producto={producto} />
             </div>
-        ))
-        /*return productsServices.data.productos.map((producto) => (
-            <div key={producto.id} className="col-md-6 col-lg-4 mb-4">
-                <div className="card-servicio h-100">
-                    <img
-                        src={producto.imgs[0]}
-                        alt={producto.nombre}
-                        className="img-fluid"
-                        style={{ width: '100%', height: 'auto' }}
-                    />
-                    <h4>{producto.nombre}</h4>
-                    <p>{producto.descripcion}</p>
-                    <div>
-                        <strong>Tallas disponibles:</strong>
-                        <ul>
-                            {producto.tallas.map((talla, index) => (
-                                <li key={index}>{talla}</li>
-                            ))}
-                        </ul>
-                    </div>
-                    <div>
-                        <strong>Colores disponibles:</strong>
-                        <ul>
-                            {producto.colores.map((color, index) => (
-                                <li key={index}>{color}</li>
-                            ))}
-                        </ul>
-                    </div>
-                    <p className="mt-2">
-                        <strong>Precio:</strong> ${producto.precio}
-                    </p>
-                </div>
-            </div>
-        ));*/
+        ));
     };
 
     const showInfoServicios = () => {
@@ -112,23 +79,7 @@ const ProductsServices: React.FC = () => {
             <div key={servicio.id} className="col-md-6 col-lg-4 mb-4">
                 <ServiceCard servicio={servicio} />
             </div>
-        ))
-        /*productsServices.data.servicios.map((servicio) => (
-            <div key={servicio.id} className="col-md-6 col-lg-4 mb-4">
-                <div className="card-servicio h-100">
-                    <img
-                        src={servicio.imgs[0]}
-                        alt={servicio.nombre}
-                        className="img-fluid"
-                        style={{ width: '100%', height: 'auto' }}
-                    />
-                    <h4>{servicio.nombre}</h4>
-                    <p>Ubicación: {servicio.ubicacion}</p>
-                    <p>Cantidad de cupos disponibles: {servicio.cupos}</p>
-                    <p>Fecha: {servicio.fecha}</p>
-                </div>
-            </div>
-        ));*/
+        ));
     };
 
     return (

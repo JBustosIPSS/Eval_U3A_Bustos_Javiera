@@ -1,11 +1,39 @@
 ## Datos
 
 Javiera Bustos Villarroel
+19.153.103-5
 Eva3 Backend y Frontend
 
 ## Nota archivo .env
 
 Se sube archivo .env con el fin de agilizar el proceso de instalación. Se debe reemplazar el valor de la variable por la ruta de la carpeta a la cual se alojará el backend (archivos php). Cabe destacar que, si bien se entiende que el archivo .env no se debe subir por temas de seguridad al exponer información sensible, se realiza en este caso sólo con fines de prueba académicos y agilizar el proceso de instalación.
+
+## Pasos de instalación
+
+1. Levantar servidor en XAMPP para poder correr los archivos php de la carpeta backend para la obtención de data y la documentación swagger asociada.
+
+El proyecto debe estar alojado dentro de la ruta C:\xampp\htdocs\ipss\Eval_U3A_Bustos_Javiera\
+
+2. Reemplazar el valor de la variable de entorno del archivo .env por la ruta en donde se alojará el backend (API), por defecto es la siguiente:
+REACT_APP_BASE_PATH_API_URL=http://localhost/ipss/Eval_U3A_Bustos_Javiera/backend
+
+Con esto el proyecto tendrá acceso a los servicios de la API.
+
+3. Instalar paquetes npm:
+npm i install 
+
+4. Ejecuta el comando para correr el proyecto:
+npm run start
+
+5. Navega a la ruta http://localhost:3000 para ver la aplicación en el navegador.
+
+6. La documentación swagger se puede revisar en el siguiente archivo json:
+http://localhost/ipss/Eval_U3A_Bustos_Javiera/docs/swagger.json
+
+La información contenida en este archivo se puede ver desplegada en SwaggerUI en la siguiente ruta:
+http://localhost/ipss/Eval_U3A_Bustos_Javiera/swagger-ui/
+
+Para mayor facilidad de lectura, la estructuración del proyecto y demás información relevante se encuentra en la documentación pdf adjunta.
 
 # Getting Started with Create React App
 
